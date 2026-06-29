@@ -2,15 +2,6 @@ import { redirect } from '@tanstack/react-router'
 import { createClient } from '@/lib/supabase/client'
 import type { Client } from '@/types'
 
-// Envoie un magic link à l'adresse fournie
-export async function sendMagicLink(email: string) {
-  const supabase = createClient()
-  return supabase.auth.signInWithOtp({
-    email,
-    options: { emailRedirectTo: `${window.location.origin}/auth/callback` },
-  })
-}
-
 // Déconnecte l'utilisateur courant
 export async function signOut() {
   const supabase = createClient()

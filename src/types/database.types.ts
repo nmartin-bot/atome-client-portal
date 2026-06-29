@@ -34,6 +34,7 @@ export interface Database {
           company_name?: string | null
           created_at?: string
         }
+        Relationships: []
       }
       projects: {
         Row: {
@@ -75,6 +76,7 @@ export interface Database {
           balance_paid_at?: string | null
           created_at?: string
         }
+        Relationships: []
       }
       project_steps: {
         Row: {
@@ -104,6 +106,7 @@ export interface Database {
           completed_at?: string | null
           sort_order?: number
         }
+        Relationships: []
       }
       documents: {
         Row: {
@@ -142,6 +145,7 @@ export interface Database {
           paid_at?: string | null
           created_at?: string
         }
+        Relationships: []
       }
       vault_credentials: {
         Row: {
@@ -151,6 +155,7 @@ export interface Database {
           service: string | null
           type: 'api' | 'dns' | 'hosting' | 'cms' | 'autre'
           encrypted_value: string
+          value_preview: string | null
           created_at: string
         }
         Insert: {
@@ -160,6 +165,7 @@ export interface Database {
           service?: string | null
           type: 'api' | 'dns' | 'hosting' | 'cms' | 'autre'
           encrypted_value: string
+          value_preview?: string | null
           created_at?: string
         }
         Update: {
@@ -169,8 +175,10 @@ export interface Database {
           service?: string | null
           type?: 'api' | 'dns' | 'hosting' | 'cms' | 'autre'
           encrypted_value?: string
+          value_preview?: string | null
           created_at?: string
         }
+        Relationships: []
       }
       project_briefs: {
         Row: {
@@ -224,6 +232,7 @@ export interface Database {
           submitted_at?: string | null
           created_at?: string
         }
+        Relationships: []
       }
       sav_tickets: {
         Row: {
@@ -232,6 +241,8 @@ export interface Database {
           title: string
           body: string | null
           status: 'open' | 'in_progress' | 'closed'
+          category: 'bug' | 'modification' | 'feature' | 'question'
+          token_cost: number | null
           source_app: string | null
           assigned_to: string | null
           created_at: string
@@ -243,6 +254,8 @@ export interface Database {
           title: string
           body?: string | null
           status?: 'open' | 'in_progress' | 'closed'
+          category?: 'bug' | 'modification' | 'feature' | 'question'
+          token_cost?: number | null
           source_app?: string | null
           assigned_to?: string | null
           created_at?: string
@@ -254,11 +267,14 @@ export interface Database {
           title?: string
           body?: string | null
           status?: 'open' | 'in_progress' | 'closed'
+          category?: 'bug' | 'modification' | 'feature' | 'question'
+          token_cost?: number | null
           source_app?: string | null
           assigned_to?: string | null
           created_at?: string
           updated_at?: string
         }
+        Relationships: []
       }
       token_ledger: {
         Row: {
@@ -282,6 +298,7 @@ export interface Database {
           label?: string
           created_at?: string
         }
+        Relationships: []
       }
       admins: {
         Row: {
@@ -299,7 +316,44 @@ export interface Database {
           email?: string
           created_at?: string
         }
+        Relationships: []
       }
+      vault_access_log: {
+        Row: {
+          id: string
+          credential_id: string
+          accessed_by: string
+          accessed_by_role: 'admin' | 'client'
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          credential_id: string
+          accessed_by: string
+          accessed_by_role: 'admin' | 'client'
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          credential_id?: string
+          accessed_by?: string
+          accessed_by_role?: 'admin' | 'client'
+          created_at?: string
+        }
+        Relationships: []
+      }
+    }
+    Views: {
+      [_ in never]: never
+    }
+    Functions: {
+      [_ in never]: never
+    }
+    Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
+      [_ in never]: never
     }
   }
 }

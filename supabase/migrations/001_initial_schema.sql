@@ -1,4 +1,32 @@
+-- ============================================================
+-- ÉTAPE 0 — Nettoyage du schéma CRM recrutement (plus utilisé)
+-- ============================================================
+drop trigger if exists on_auth_user_created on auth.users;
+drop function if exists public.handle_new_user();
+drop function if exists public.is_admin() cascade;
+
+drop table if exists public.availability_slots cascade;
+drop table if exists public.ats_applications cascade;
+drop table if exists public.tasks cascade;
+drop table if exists public.quotes cascade;
+drop table if exists public.documents cascade;
+drop table if exists public.evaluations cascade;
+drop table if exists public.attendance cascade;
+drop table if exists public.training_sessions cascade;
+drop table if exists public.training_courses cascade;
+drop table if exists public.cv_versions cascade;
+drop table if exists public.coaching_sessions cascade;
+drop table if exists public.appointments cascade;
+drop table if exists public.interactions cascade;
+drop table if exists public.learners cascade;
+drop table if exists public.candidates cascade;
+drop table if exists public.contacts cascade;
+drop table if exists public.companies cascade;
+drop table if exists public.profiles cascade;
+
+-- ============================================================
 -- EXTENSION UUID
+-- ============================================================
 create extension if not exists "uuid-ossp";
 
 -- TABLE clients
@@ -109,7 +137,9 @@ create table public.admins (
   created_at timestamptz default now()
 );
 
--- Enable RLS sur toutes les tables
+-- ============================================================
+-- RLS Policies
+-- ============================================================
 alter table public.clients enable row level security;
 alter table public.projects enable row level security;
 alter table public.project_steps enable row level security;
@@ -177,3 +207,44 @@ create policy "client_tokens_read" on public.token_ledger
 -- admins : uniquement les admins voient la table admins
 create policy "admins_self" on public.admins
   for select using (auth.uid() = id);
+
+-- admins : un admin peut tout lire/écrire sur toutes les tables (back-office)
+create or replace function public.is_admin()
+returns boolean as $$
+  select exists (select 1 from public.admins where id = auth.uid());
+$$ language sql security definer stable;
+
+create policy "admin_full_access_clients" on public.clients for all using (public.is_admin());
+create policy "admin_full_access_projects" on public.projects for all using (public.is_admin());
+create policy "admin_full_access_steps" on public.project_steps for all using (public.is_admin());
+create policy "admin_full_access_documents" on public.documents for all using (public.is_admin());
+create policy "admin_full_access_vault" on public.vault_credentials for all using (public.is_admin());
+create policy "admin_full_access_briefs" on public.project_briefs for all using (public.is_admin());
+create policy "admin_full_access_sav" on public.sav_tickets for all using (public.is_admin());
+create policy "admin_full_access_tokens" on public.token_ledger for all using (public.is_admin());
+
+-- ============================================================
+-- Trigger : crée automatiquement une ligne "clients" à l'inscription
+-- (inscription libre depuis /login — voir SESSION 1, déviation assumée
+-- du brief qui prévoyait magic link uniquement)
+-- ============================================================
+create or replace function public.handle_new_client()
+returns trigger as $$
+begin
+  insert into public.clients (id, email, full_name)
+  values (new.id, new.email, coalesce(new.raw_user_meta_data->>'full_name', new.email))
+  on conflict (id) do nothing;
+  return new;
+end;
+$$ language plpgsql security definer;
+
+create trigger on_auth_user_created
+  after insert on auth.users
+  for each row execute function public.handle_new_client();
+
+-- ============================================================
+-- ÉTAPE FINALE — Recréer ton compte admin
+-- ============================================================
+insert into public.admins (id, email)
+select id, email from auth.users where email = 'n.martin@untitled-hr.com'
+on conflict (id) do nothing;

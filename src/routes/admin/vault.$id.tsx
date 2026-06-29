@@ -1,4 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
+import PageHeader from '@/components/layout/PageHeader'
+import EmptyState from '@/components/shared/EmptyState'
 
 export const Route = createFileRoute('/admin/vault/$id')({
   component: AdminVaultDetailPage,
@@ -6,10 +8,17 @@ export const Route = createFileRoute('/admin/vault/$id')({
 
 function AdminVaultDetailPage() {
   const { id } = Route.useParams()
+
   return (
-    <div className="p-8">
-      <h1 className="text-lg font-semibold">Vault admin — projet {id}</h1>
-      <p className="text-sm text-gray-500 mt-2">À construire en SESSION 6.</p>
+    <div className="h-full flex flex-col">
+      <PageHeader pathItems={[{ label: 'Clients', href: '/admin' }, { label: 'Vault' }]} />
+      <div className="flex-1 overflow-y-auto">
+        <EmptyState
+          title="Vault credentials"
+          description={`Les credentials déchiffrés du projet ${id} seront construits ici (session 6).`}
+          variant="cards"
+        />
+      </div>
     </div>
   )
 }

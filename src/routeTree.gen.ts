@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as AdminRouteImport } from './routes/admin'
@@ -17,13 +18,19 @@ import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as DashboardVaultRouteImport } from './routes/dashboard/vault'
 import { Route as DashboardTokensRouteImport } from './routes/dashboard/tokens'
+import { Route as DashboardSettingsRouteImport } from './routes/dashboard/settings'
 import { Route as DashboardSavRouteImport } from './routes/dashboard/sav'
 import { Route as DashboardDocumentsRouteImport } from './routes/dashboard/documents'
 import { Route as DashboardBriefRouteImport } from './routes/dashboard/brief'
-import { Route as AuthCallbackRouteImport } from './routes/auth/callback'
+import { Route as AdminSettingsIndexRouteImport } from './routes/admin/settings/index'
 import { Route as AdminVaultIdRouteImport } from './routes/admin/vault.$id'
 import { Route as AdminClientsIdRouteImport } from './routes/admin/clients.$id'
 
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
@@ -64,6 +71,11 @@ const DashboardTokensRoute = DashboardTokensRouteImport.update({
   path: '/tokens',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const DashboardSavRoute = DashboardSavRouteImport.update({
   id: '/sav',
   path: '/sav',
@@ -79,10 +91,10 @@ const DashboardBriefRoute = DashboardBriefRouteImport.update({
   path: '/brief',
   getParentRoute: () => DashboardRoute,
 } as any)
-const AuthCallbackRoute = AuthCallbackRouteImport.update({
-  id: '/auth/callback',
-  path: '/auth/callback',
-  getParentRoute: () => rootRouteImport,
+const AdminSettingsIndexRoute = AdminSettingsIndexRouteImport.update({
+  id: '/settings/',
+  path: '/settings/',
+  getParentRoute: () => AdminRoute,
 } as any)
 const AdminVaultIdRoute = AdminVaultIdRouteImport.update({
   id: '/vault/$id',
@@ -100,30 +112,34 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRouteWithChildren
   '/dashboard': typeof DashboardRouteWithChildren
   '/login': typeof LoginRoute
-  '/auth/callback': typeof AuthCallbackRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/dashboard/brief': typeof DashboardBriefRoute
   '/dashboard/documents': typeof DashboardDocumentsRoute
   '/dashboard/sav': typeof DashboardSavRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/tokens': typeof DashboardTokensRoute
   '/dashboard/vault': typeof DashboardVaultRoute
   '/admin/': typeof AdminIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/admin/clients/$id': typeof AdminClientsIdRoute
   '/admin/vault/$id': typeof AdminVaultIdRoute
+  '/admin/settings/': typeof AdminSettingsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
-  '/auth/callback': typeof AuthCallbackRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/dashboard/brief': typeof DashboardBriefRoute
   '/dashboard/documents': typeof DashboardDocumentsRoute
   '/dashboard/sav': typeof DashboardSavRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/tokens': typeof DashboardTokensRoute
   '/dashboard/vault': typeof DashboardVaultRoute
   '/admin': typeof AdminIndexRoute
   '/dashboard': typeof DashboardIndexRoute
   '/admin/clients/$id': typeof AdminClientsIdRoute
   '/admin/vault/$id': typeof AdminVaultIdRoute
+  '/admin/settings': typeof AdminSettingsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -131,16 +147,18 @@ export interface FileRoutesById {
   '/admin': typeof AdminRouteWithChildren
   '/dashboard': typeof DashboardRouteWithChildren
   '/login': typeof LoginRoute
-  '/auth/callback': typeof AuthCallbackRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/dashboard/brief': typeof DashboardBriefRoute
   '/dashboard/documents': typeof DashboardDocumentsRoute
   '/dashboard/sav': typeof DashboardSavRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/tokens': typeof DashboardTokensRoute
   '/dashboard/vault': typeof DashboardVaultRoute
   '/admin/': typeof AdminIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/admin/clients/$id': typeof AdminClientsIdRoute
   '/admin/vault/$id': typeof AdminVaultIdRoute
+  '/admin/settings/': typeof AdminSettingsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -149,46 +167,52 @@ export interface FileRouteTypes {
     | '/admin'
     | '/dashboard'
     | '/login'
-    | '/auth/callback'
+    | '/reset-password'
     | '/dashboard/brief'
     | '/dashboard/documents'
     | '/dashboard/sav'
+    | '/dashboard/settings'
     | '/dashboard/tokens'
     | '/dashboard/vault'
     | '/admin/'
     | '/dashboard/'
     | '/admin/clients/$id'
     | '/admin/vault/$id'
+    | '/admin/settings/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/login'
-    | '/auth/callback'
+    | '/reset-password'
     | '/dashboard/brief'
     | '/dashboard/documents'
     | '/dashboard/sav'
+    | '/dashboard/settings'
     | '/dashboard/tokens'
     | '/dashboard/vault'
     | '/admin'
     | '/dashboard'
     | '/admin/clients/$id'
     | '/admin/vault/$id'
+    | '/admin/settings'
   id:
     | '__root__'
     | '/'
     | '/admin'
     | '/dashboard'
     | '/login'
-    | '/auth/callback'
+    | '/reset-password'
     | '/dashboard/brief'
     | '/dashboard/documents'
     | '/dashboard/sav'
+    | '/dashboard/settings'
     | '/dashboard/tokens'
     | '/dashboard/vault'
     | '/admin/'
     | '/dashboard/'
     | '/admin/clients/$id'
     | '/admin/vault/$id'
+    | '/admin/settings/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -196,11 +220,18 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRouteWithChildren
   DashboardRoute: typeof DashboardRouteWithChildren
   LoginRoute: typeof LoginRoute
-  AuthCallbackRoute: typeof AuthCallbackRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
@@ -257,6 +288,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardTokensRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/settings': {
+      id: '/dashboard/settings'
+      path: '/settings'
+      fullPath: '/dashboard/settings'
+      preLoaderRoute: typeof DashboardSettingsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/dashboard/sav': {
       id: '/dashboard/sav'
       path: '/sav'
@@ -278,12 +316,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardBriefRouteImport
       parentRoute: typeof DashboardRoute
     }
-    '/auth/callback': {
-      id: '/auth/callback'
-      path: '/auth/callback'
-      fullPath: '/auth/callback'
-      preLoaderRoute: typeof AuthCallbackRouteImport
-      parentRoute: typeof rootRouteImport
+    '/admin/settings/': {
+      id: '/admin/settings/'
+      path: '/settings'
+      fullPath: '/admin/settings/'
+      preLoaderRoute: typeof AdminSettingsIndexRouteImport
+      parentRoute: typeof AdminRoute
     }
     '/admin/vault/$id': {
       id: '/admin/vault/$id'
@@ -306,12 +344,14 @@ interface AdminRouteChildren {
   AdminIndexRoute: typeof AdminIndexRoute
   AdminClientsIdRoute: typeof AdminClientsIdRoute
   AdminVaultIdRoute: typeof AdminVaultIdRoute
+  AdminSettingsIndexRoute: typeof AdminSettingsIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminIndexRoute: AdminIndexRoute,
   AdminClientsIdRoute: AdminClientsIdRoute,
   AdminVaultIdRoute: AdminVaultIdRoute,
+  AdminSettingsIndexRoute: AdminSettingsIndexRoute,
 }
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
@@ -320,6 +360,7 @@ interface DashboardRouteChildren {
   DashboardBriefRoute: typeof DashboardBriefRoute
   DashboardDocumentsRoute: typeof DashboardDocumentsRoute
   DashboardSavRoute: typeof DashboardSavRoute
+  DashboardSettingsRoute: typeof DashboardSettingsRoute
   DashboardTokensRoute: typeof DashboardTokensRoute
   DashboardVaultRoute: typeof DashboardVaultRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
@@ -329,6 +370,7 @@ const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardBriefRoute: DashboardBriefRoute,
   DashboardDocumentsRoute: DashboardDocumentsRoute,
   DashboardSavRoute: DashboardSavRoute,
+  DashboardSettingsRoute: DashboardSettingsRoute,
   DashboardTokensRoute: DashboardTokensRoute,
   DashboardVaultRoute: DashboardVaultRoute,
   DashboardIndexRoute: DashboardIndexRoute,
@@ -343,7 +385,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRouteWithChildren,
   DashboardRoute: DashboardRouteWithChildren,
   LoginRoute: LoginRoute,
-  AuthCallbackRoute: AuthCallbackRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

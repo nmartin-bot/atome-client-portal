@@ -6,7 +6,7 @@ import type { Client } from '@/types'
 export function useAuth() {
   const supabase = createClient()
   const [user, setUser] = useState<User | null>(null)
-  const [clientProfile, setClientProfile] = useState<Client | null>(null)
+  const [profile, setProfile] = useState<Client | null>(null)
   const [isAdmin, setIsAdmin] = useState(false)
   const [loading, setLoading] = useState(true)
 
@@ -21,7 +21,7 @@ export function useAuth() {
       (_event: string, session: Session | null) => {
         setUser(session?.user ?? null)
         if (session?.user) fetchProfile(session.user.id)
-        else { setClientProfile(null); setIsAdmin(false); setLoading(false) }
+        else { setProfile(null); setIsAdmin(false); setLoading(false) }
       }
     )
 
@@ -33,21 +33,14 @@ export function useAuth() {
       supabase.from('clients').select('*').eq('id', userId).maybeSingle(),
       supabase.from('admins').select('id').eq('id', userId).maybeSingle(),
     ])
-    setClientProfile(client)
+    setProfile(client)
     setIsAdmin(admin !== null)
     setLoading(false)
-  }
-
-  async function signInWithMagicLink(email: string) {
-    return supabase.auth.signInWithOtp({
-      email,
-      options: { emailRedirectTo: `${window.location.origin}/auth/callback` },
-    })
   }
 
   async function signOut() {
     return supabase.auth.signOut()
   }
 
-  return { user, clientProfile, isAdmin, loading, signInWithMagicLink, signOut }
+  return { user, profile, isAdmin, loading, signOut }
 }
