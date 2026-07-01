@@ -6,7 +6,7 @@
 
 import { createClient } from 'jsr:@supabase/supabase-js@2'
 
-const ALLOWED_ORIGINS = ['https://app.atome.fr', 'http://localhost:3000']
+const ALLOWED_ORIGINS = ['https://app.atomegroup.fr', 'http://localhost:3000']
 
 function corsHeaders(req: Request) {
   const origin = req.headers.get('Origin') ?? ''
