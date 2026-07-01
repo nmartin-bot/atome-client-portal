@@ -303,7 +303,8 @@ function LoginPage() {
       </div>
 
       {/* Visual side */}
-      <div className="hidden md:flex relative overflow-hidden" style={{ flex: 1, background: '#E9EAEC' }}>
+      <div className="hidden md:flex relative overflow-hidden" style={{ flex: 1, background: '#f0ede8' }}>
+        <img src="/login-bg.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-90" />
         <div
           className="absolute flex flex-col rounded-[0.85rem] overflow-hidden"
           style={{ top: 64, left: 64, right: -120, bottom: -120, background: '#fff', boxShadow: '0 40px 90px -20px rgba(0,0,0,0.18)', border: '6px solid rgba(0,0,0,0.06)' }}
