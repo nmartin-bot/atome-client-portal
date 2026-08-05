@@ -208,8 +208,9 @@ function LoginPage() {
 
               {/* Google OAuth */}
               <button
-                onClick={handleGoogle}
+                onClick={undefined}
                 type="button"
+                disabled
                 className="w-full flex items-center justify-center gap-2.5 rounded-[0.65rem] hover:bg-gray-50 transition-colors mb-5"
                 style={{ border: '1px solid rgba(0,0,0,0.1)', padding: '10px 0', fontSize: '13.5px', fontWeight: 500, color: '#1A1A1A' }}
               >
