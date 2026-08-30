@@ -94,7 +94,7 @@ function LoginPage() {
       {/* Form side */}
       <div className="flex flex-col items-center justify-center px-8 py-12" style={{ flex: '0 0 44%' }}>
         <div className="w-full max-w-[360px]">
-          <Link to="/" className="inline-flex items-center gap-2 hover:opacity-70 transition-opacity mb-14">
+          <Link to="/" className="inline-flex items-center gap-6 hover:opacity-70 transition-opacity mb-14">
             <img src="/logo-wake.png" alt="Wake Systems" className="h-16 w-auto" />
             <span style={{ fontSize: 36, fontWeight: 400, color: '#1A1A1A', fontFamily: "'Instrument Serif', Georgia, serif", marginTop: 8 }}>Wake Systems</span>
           </Link>
