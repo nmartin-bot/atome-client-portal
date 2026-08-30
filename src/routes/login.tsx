@@ -96,7 +96,7 @@ function LoginPage() {
         <div className="w-full max-w-[360px]">
           <Link to="/" className="inline-flex items-center gap-2 hover:opacity-70 transition-opacity mb-14">
             <img src="/logo-wake.png" alt="Wake Systems" className="h-9 w-auto" />
-            <span style={{ fontSize: 20, fontWeight: 400, color: '#1A1A1A', fontFamily: "'Instrument Serif', Georgia, serif" }}>Wake Systems</span>
+            <span style={{ fontSize: 28, fontWeight: 400, color: '#1A1A1A', fontFamily: "'Instrument Serif', Georgia, serif" }}>Wake Systems</span>
           </Link>
 
           {showForgot ? (
