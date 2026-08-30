@@ -315,7 +315,7 @@ function LoginPage() {
             <div className="flex flex-col flex-shrink-0" style={{ width: 210, borderRight: '1px solid rgba(0,0,0,0.06)', padding: '18px 14px' }}>
               <div className="flex items-center gap-2 mb-7 px-1">
                 <span className="rounded-[0.3rem] flex items-center justify-center flex-shrink-0" style={{ width: 18, height: 18, background: '#1A1A1A' }}>
-                  <img src="/logo-atome-white.svg" alt="" style={{ width: 11, height: 11 }} />
+                  <img src="/logo-wake-w.png" alt="" style={{ width: 11, height: 11, objectFit: 'contain' }} />
                 </span>
                 <span style={{ fontSize: 13, fontWeight: 600, color: '#1A1A1A' }}>Espace client</span>
               </div>
