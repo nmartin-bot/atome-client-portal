@@ -198,11 +198,13 @@ function LoginPage() {
           ) : (
             <>
               <div className="mb-8">
-                <h1 className="mb-2" style={{ fontWeight: 600, fontSize: 24, lineHeight: 1.25, color: '#1A1A1A' }}>
-                  {mode === 'signup' ? 'Créer votre compte' : "Connexion à l'espace client"}
-                </h1>
+                {mode === 'signup' && (
+                  <h1 className="mb-2" style={{ fontWeight: 600, fontSize: 24, lineHeight: 1.25, color: '#1A1A1A' }}>
+                    Créer votre compte
+                  </h1>
+                )}
                 <p style={{ fontSize: '13.5px', color: '#6B6B6B' }}>
-                  {mode === 'signup' ? 'Créez votre accès à votre espace client Atome.' : 'Accédez à vos projets, livrables et échanges.'}
+                  {mode === 'signup' ? 'Créez votre accès à votre espace client.' : 'Accédez à vos projets, livrables et échanges.'}
                 </p>
               </div>
 
