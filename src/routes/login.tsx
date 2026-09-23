@@ -94,9 +94,9 @@ function LoginPage() {
       {/* Form side */}
       <div className="flex flex-col items-center justify-center px-6 py-12 w-full md:w-auto md:flex-none" style={{ flex: '0 0 44%' }}>
         <div className="w-full max-w-[360px]">
-          <Link to="/" className="inline-flex items-center gap-4 hover:opacity-70 transition-opacity mb-14">
-            <img src="/logo-wake-124.svg" alt="Wake Systems" className="h-13 w-auto" />
-            <span style={{ fontSize: 36, fontWeight: 400, color: '#1A1A1A', fontFamily: "'Libertinus Serif', Georgia, serif", marginTop: 8 }}>Wake Systems</span>
+          <Link to="/" className="inline-flex items-center gap-3 hover:opacity-70 transition-opacity mb-14">
+            <img src="/logo-wake-124.svg" alt="Wake Systems" className="h-10 md:h-13 w-auto" />
+            <span className="text-2xl md:text-4xl" style={{ fontWeight: 400, color: '#1A1A1A', fontFamily: "'Libertinus Serif', Georgia, serif", marginTop: 4 }}>Wake Systems</span>
           </Link>
 
           {showForgot ? (
