@@ -16,7 +16,7 @@ export const Route = createRootRoute({
       { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Libertinus+Serif&display=swap' },
       { rel: 'stylesheet', href: appCss },
-      { rel: 'icon', type: 'image/svg+xml', href: '/logo-atome.svg' },
+      { rel: 'icon', type: 'image/png', href: '/favicon.png' },
     ],
   }),
   shellComponent: RootDocument,
