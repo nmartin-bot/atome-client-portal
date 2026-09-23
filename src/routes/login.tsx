@@ -95,8 +95,8 @@ function LoginPage() {
       <div className="flex flex-col items-center justify-center px-6 py-12 w-full" style={{ flex: '1 1 auto', maxWidth: '100%' }}>
         <div className="w-full max-w-[360px]">
           <Link to="/" className="inline-flex items-center gap-3 hover:opacity-70 transition-opacity mb-14">
-            <img src="/logo-wake-124.svg" alt="Wake Systems" className="h-10 md:h-13 w-auto" />
-            <span className="text-2xl md:text-4xl" style={{ fontWeight: 400, color: '#1A1A1A', fontFamily: "'Libertinus Serif', Georgia, serif", marginTop: 4 }}>Wake Systems</span>
+            <img src="/logo-wake-124.svg" alt="Wake Systems" className="h-14 md:h-16 w-auto" />
+            <span className="text-4xl md:text-5xl" style={{ fontWeight: 400, color: '#1A1A1A', fontFamily: "'Libertinus Serif', Georgia, serif", marginTop: 6 }}>Wake Systems</span>
           </Link>
 
           {showForgot ? (
