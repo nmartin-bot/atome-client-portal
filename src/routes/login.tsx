@@ -95,8 +95,8 @@ function LoginPage() {
       <div className="flex flex-col items-center justify-center px-8 py-12" style={{ flex: '0 0 44%' }}>
         <div className="w-full max-w-[360px]">
           <Link to="/" className="inline-flex items-center gap-4 hover:opacity-70 transition-opacity mb-14">
-            <img src="/logo-wake.png" alt="Wake Systems" className="h-13 w-auto" />
-            <span style={{ fontSize: 36, fontWeight: 400, color: '#1A1A1A', fontFamily: "'Instrument Serif', Georgia, serif", marginTop: 8 }}>Wake Systems</span>
+            <img src="/logo-wake-124.svg" alt="Wake Systems" className="h-13 w-auto" />
+            <span style={{ fontSize: 36, fontWeight: 400, color: '#1A1A1A', fontFamily: "'Libertinus Serif', Georgia, serif", marginTop: 8 }}>Wake Systems</span>
           </Link>
 
           {showForgot ? (
@@ -316,7 +316,7 @@ function LoginPage() {
             <div className="flex flex-col flex-shrink-0" style={{ width: 210, borderRight: '1px solid rgba(0,0,0,0.06)', padding: '18px 14px' }}>
               <div className="flex items-center gap-2 mb-7 px-1">
                 <span className="rounded-[0.3rem] flex items-center justify-center flex-shrink-0" style={{ width: 18, height: 18, background: '#1A1A1A' }}>
-                  <img src="/logo-wake-w.png" alt="" style={{ width: 11, height: 11, objectFit: 'contain' }} />
+                  <img src="/logo-wake-123.svg" alt="" style={{ width: 11, height: 11, objectFit: 'contain' }} />
                 </span>
                 <span style={{ fontSize: 13, fontWeight: 600, color: '#1A1A1A' }}>Espace client</span>
               </div>

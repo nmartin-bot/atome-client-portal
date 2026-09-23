@@ -14,7 +14,7 @@ export const Route = createRootRoute({
     links: [
       { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
       { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Libertinus+Serif&display=swap' },
       { rel: 'stylesheet', href: appCss },
       { rel: 'icon', type: 'image/svg+xml', href: '/logo-atome.svg' },
     ],
